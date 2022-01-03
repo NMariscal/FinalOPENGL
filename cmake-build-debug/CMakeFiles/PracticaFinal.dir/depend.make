@@ -241,6 +241,11 @@ CMakeFiles/PracticaFinal.dir/src/Shaders.cpp.obj: \
  ../libraries2122/glm/include/glm/vector_relational.hpp \
  ../src/Shaders.cpp \
  ../src/Shaders.h
+CMakeFiles/PracticaFinal.dir/src/Texture.cpp.obj: \
+ ../libraries2122/freeimage/include/freeImage.h \
+ ../libraries2122/glew/include/GL/glew.h \
+ ../src/Texture.cpp \
+ ../src/Texture.h
 CMakeFiles/PracticaFinal.dir/src/main.cpp.obj: \
  ../libraries2122/assimp/include/assimp/Compiler/poppack1.h \
  ../libraries2122/assimp/include/assimp/Compiler/pstdint.h \
@@ -270,6 +275,7 @@ CMakeFiles/PracticaFinal.dir/src/main.cpp.obj: \
  ../libraries2122/assimp/include/assimp/vector2.inl \
  ../libraries2122/assimp/include/assimp/vector3.h \
  ../libraries2122/assimp/include/assimp/vector3.inl \
+ ../libraries2122/freeimage/include/freeImage.h \
  ../libraries2122/glew/include/GL/glew.h \
  ../libraries2122/glfw/include/GLFW/glfw3.h \
  ../libraries2122/glm/include/glm/common.hpp \
@@ -375,4 +381,5 @@ CMakeFiles/PracticaFinal.dir/src/main.cpp.obj: \
  ../libraries2122/glm/include/glm/vector_relational.hpp \
  ../src/Model.h \
  ../src/Shaders.h \
+ ../src/Texture.h \
  ../src/main.cpp

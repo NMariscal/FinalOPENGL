@@ -104,6 +104,12 @@
 		<Unit filename="C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Shaders.h">
 			<Option target="PracticaFinal"/>
 		</Unit>
+		<Unit filename="C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Texture.cpp">
+			<Option target="PracticaFinal"/>
+		</Unit>
+		<Unit filename="C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Texture.h">
+			<Option target="PracticaFinal"/>
+		</Unit>
 		<Unit filename="C:/Users/nmari/CLionProjects/PracticaFinalIG/src/main.cpp">
 			<Option target="PracticaFinal"/>
 		</Unit>
