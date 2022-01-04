@@ -23,31 +23,34 @@ void drawSuelo(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawParedDerecha(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawParedIzquierda(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawParedFondo(glm::mat4 P, glm::mat4 V, glm::mat4 M);
-
+//Sofá
 void drawSofa(glm::mat4 P, glm::mat4 V, glm::mat4 M);
+// Mesa
 void drawPatasMesa(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawMesa (glm::mat4 P, glm::mat4 V, glm::mat4 M);
+// Mesilla
 void drawPatasMesilla(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawMesilla (glm::mat4 P, glm::mat4 V, glm::mat4 M);
+// silla
 void drawPatasSilla (glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawSilla (glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawRespaldoSilla (glm::mat4 P, glm::mat4 V, glm::mat4 M);
-
-//
+//Lampara mesilla
 void drawBombillaMesilla(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawBaseLamparaMesilla(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawLamparaMesilla(glm::mat4 P, glm::mat4 V, glm::mat4 M);
-
-//
+//Lamparas pared
 void drawPantallaLamparaPared(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawConjuntoPantallaLamparaPared(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawPantallaLamparaParedIzquierda(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawPantallaLamparaParedDerecha(glm::mat4 P, glm::mat4 V, glm::mat4 M);
-
-//
+// Cuadros
 void drawCuadroPared(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 void drawConjuntoCuadroPared(glm::mat4 P, glm::mat4 V, glm::mat4 M);
+//Chimenea
 void drawChimenea(glm::mat4 P, glm::mat4 V, glm::mat4 M);
+// Alfombra
+void drawAlfombra(glm::mat4 P, glm::mat4 V, glm::mat4 M);
 
 
 void funcionMovimientoCamara(GLFWwindow *window, double x,double y);
@@ -72,13 +75,13 @@ Model marco;
 Model cube;
 
 // Luces
-//#define   NLD 1
+#define   NLD 1
 #define   NLP 1
-//#define   NLF 1
+#define   NLF 1
 Light     lightG;
-//Light     lightD[NLD];
+Light     lightD[NLD];
 Light     lightP[NLP];
-//Light     lightF[NLF];
+Light     lightF[NLF];
 
 // Materiales
 Material  ruby;
@@ -91,6 +94,8 @@ Material white;
 Texture img4_marmol;
 Textures texLuz;
 Texture img1;
+Texture img2;
+Textures alfombra;
 Textures noEmissive;
 
 // Viewport : tamaño de la ventana
@@ -169,7 +174,6 @@ void funFramebufferSize(GLFWwindow* window, int width, int height) {
     // Actualizacion de w y h
     w = width;
     h = height;
-
 }
 
 void configScene() {
@@ -193,24 +197,37 @@ void configScene() {
     // Texturas
     img1.initTexture("resources/textures/img1.png");
     img4_marmol.initTexture("resources/textures/img4Luz.png");
+    img2.initTexture("resources/textures/img2.png");
+
     // Luz ambiental global
     lightG.ambient = glm::vec3(0.5, 0.5, 0.5);
 
     // Luces direccionales = la que da la chimenea
-    /*lightD[0].direction = glm::vec3(0.5, 2.4, 0.0);
+    lightD[0].direction = glm::vec3(-1.0, 0.0, 0.0);
     lightD[0].ambient   = glm::vec3( 0.1, 0.1, 0.1);
     lightD[0].diffuse   = glm::vec3( 0.7, 0.7, 0.7);
-    lightD[0].specular  = glm::vec3( 0.7, 0.7, 0.7);*/
+    lightD[0].specular  = glm::vec3( 0.7, 0.7, 0.7);
 
     // Luces posicionales
-    lightP[0].position    = glm::vec3(1.5, 0.2, 0.0);
+    lightP[0].position    = glm::vec3(0.0, 3.0, 3.0);
     lightP[0].ambient     = glm::vec3(0.2, 0.2, 0.2);
-    lightP[0].diffuse     = glm::vec3( 0.9,  0.9,  0.9);
-    lightP[0].specular    = glm::vec3( 0.9,  0.9,  0.9);
-    lightP[0].c0          = 1.0; // debao, izda / cha o al
-    lightP[0].c1          = 0.22; //
-    lightP[0].c2          = 0.20; //
+    lightP[0].diffuse     = glm::vec3(0.9, 0.9, 0.9);
+    lightP[0].specular    = glm::vec3(0.9, 0.9, 0.9);
+    lightP[0].c0          = 1.00;
+    lightP[0].c1          = 0.22;
+    lightP[0].c2          = 0.20;
+
     // Luces focales
+    lightF[0].position    = glm::vec3(-2.0,  2.0,  5.0);
+    lightF[0].direction   = glm::vec3( 2.0, -2.0, -5.0);
+    lightF[0].ambient     = glm::vec3( 0.2,  0.2,  0.2);
+    lightF[0].diffuse     = glm::vec3( 0.9,  0.9,  0.9);
+    lightF[0].specular    = glm::vec3( 0.9,  0.9,  0.9);
+    lightF[0].innerCutOff = 10.0;
+    lightF[0].outerCutOff = lightF[0].innerCutOff + 5.0;
+    lightF[0].c0          = 1.000;
+    lightF[0].c1          = 0.090;
+    lightF[0].c2          = 0.032;
 
     // Materiales
     ruby.ambient   = glm::vec4(0.174500, 0.011750, 0.011750, 0.55);
@@ -256,14 +273,13 @@ void configScene() {
     // Texturas
     texLuz.diffuse = img4_marmol.getTexture();
     texLuz.specular = img4_marmol.getTexture();
-    texLuz.emissive = img1.getTexture();;
+    texLuz.emissive = img4_marmol.getTexture();;
     texLuz.normal = 0;
     texLuz.shininess = 10.0;
 
 }
 
 void renderScene() {
-
     // Borramos el buffer de color
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -321,9 +337,9 @@ void drawObject(Model model, glm::vec3 color, glm::mat4 P, glm::mat4 V, glm::mat
 
 void setLights(glm::mat4 P, glm::mat4 V) {
     shaders.setLight("ulightG",lightG);
-    //for(int i=0; i<NLD; i++) shaders.setLight("ulightD["+toString(i)+"]",lightD[i]);
+    for(int i=0; i<NLD; i++) shaders.setLight("ulightD["+toString(i)+"]",lightD[i]);
     for(int i=0; i<NLP; i++) shaders.setLight("ulightP["+toString(i)+"]",lightP[i]);
-    //for(int i=0; i<NLF; i++) shaders.setLight("ulightF["+toString(i)+"]",lightF[i]);
+    for(int i=0; i<NLF; i++) shaders.setLight("ulightF["+toString(i)+"]",lightF[i]);
 
     for(int i=0; i<NLP; i++) {
         glm::mat4 M = glm::translate(I,lightP[i].position) * glm::scale(I,glm::vec3(0.1));
@@ -332,10 +348,10 @@ void setLights(glm::mat4 P, glm::mat4 V) {
         drawObjectTex(sphere, texLuz, P, V, M*R);
     }
 
-    /*for(int i=0; i<NLF; i++) {
+    for(int i=0; i<NLF; i++) {
         glm::mat4 M = glm::translate(I,lightF[i].position) * glm::scale(I,glm::vec3(0.1));
         drawObjectTex(sphere, texLuz, P, V, M);
-    }*/
+    }
 
 }
 
@@ -375,18 +391,19 @@ void drawHabitacion(glm::mat4 P, glm::mat4 V, glm::mat4 M){
     drawConjuntoPantallaLamparaPared(P, V, M);
     drawConjuntoCuadroPared(P, V, M);
     drawChimenea(P,V,M*T2);
+    drawAlfombra(P ,V, M);
 }
 
 void drawSuelo(glm::mat4 P, glm::mat4 V, glm::mat4 M){
     glm::mat4 S = glm::scale(I, glm::vec3(6.0, 0.0, 6.0));
-    drawObjectMat(plane, jade, P, V, S);
+    drawObjectTex(plane, texLuz, P, V, S);
 }
 
 void drawParedDerecha(glm::mat4 P, glm::mat4 V, glm::mat4 M){
     glm::mat4 S = glm::scale(I, glm::vec3(3.0, 0.0, 6.0));
     glm::mat4 R = glm::rotate(I, glm::radians(-90.0f), glm::vec3(0.0f,0.0f,1.0f));
     glm::mat4 T = glm::translate(I, glm::vec3(6.0, 3.0f, 0.0));
-    drawObjectMat(plane, white, P, V, T*R*S);
+    drawObjectTex(plane, texLuz, P, V, T*R*S);
 }
 void drawParedIzquierda(glm::mat4 P, glm::mat4 V, glm::mat4 M){
     glm::mat4 S = glm::scale(I, glm::vec3(3.0, 0.0, 6.0));
@@ -554,6 +571,11 @@ void drawChimenea(glm::mat4 P, glm::mat4 V, glm::mat4 M){
     glm::mat4 R3 = glm::rotate(I, glm::radians(90.0f), glm::vec3(0.0f,0.0f,1.0f));
     drawObjectMat(cube, ruby, P, V, M*R3*T3*S3);
 
+}
+void drawAlfombra(glm::mat4 P, glm::mat4 V, glm::mat4 M){
+    glm::mat4 S = glm::scale(I, glm::vec3(1.5, 0.1, 1.0));
+    glm::mat4 T = glm::translate(I, glm::vec3(0.0, -0.9, 0.0));
+    drawObjectTex(plane, texLuz, P, V, M * T * S);
 }
 
 void funcionMovimientoCamara(GLFWwindow *window, double x,double y){

@@ -236,6 +236,12 @@ vector3.h
 cmath
 -
 
+../libraries2122/freeimage/include/freeImage.h
+wchar.h
+-
+inttypes.h
+-
+
 ../libraries2122/glew/include/GL/glew.h
 stddef.h
 -
@@ -1126,6 +1132,14 @@ glm/gtc/matrix_transform.hpp
 sstream
 -
 
+C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Texture.h
+iostream
+-
+GL/glew.h
+-
+freeImage.h
+-
+
 C:/Users/nmari/CLionProjects/PracticaFinalIG/src/main.cpp
 iostream
 -
@@ -1137,4 +1151,6 @@ Shaders.h
 C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Shaders.h
 Model.h
 C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Model.h
+Texture.h
+C:/Users/nmari/CLionProjects/PracticaFinalIG/src/Texture.h
 
