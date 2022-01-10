@@ -4,20 +4,20 @@
 // Crea la textura
 //------------------------
 void Texture::initTexture(const char *textureFile) {
-
- // Creamos la textura a configurar = inicializar texturas (crea la zona de memoria)
+    
+ // Creamos la textura a configurar
     glGenTextures(1,&texture);  
-    glBindTexture(GL_TEXTURE_2D, texture);// para cuando la camara esté muy lejos reducir la resolución
+    glBindTexture(GL_TEXTURE_2D, texture);
     
  // Cargamos la imagen
     unsigned int  w, h;
     unsigned char *pixels = loadTexture(textureFile, w, h);  
     
- // Creamos la textura = cargamos textura en memoria reservada
+ // Creamos la textura
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, (void *)pixels);
     glGenerateMipmap(GL_TEXTURE_2D);
     
- // Configuramos la textura = cnfigurar otros filtros
+ // Configuramos la textura
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -30,10 +30,10 @@ void Texture::initTexture(const char *textureFile) {
 }
 
 //--------------------------------------------------
-// Carga una textura mediante la librería Freeimage = para cargar los pixeles de una imagen
+// Carga una textura mediante la librería Freeimage
 //--------------------------------------------------
 unsigned char* Texture::loadTexture(const char *textureFile, unsigned int &w, unsigned int &h) {
-    // lee una imagen que tenemos en una ruta y almacena sus pixeles
+    
     FreeImage_Initialise(TRUE);
 
  // Leemos la textura

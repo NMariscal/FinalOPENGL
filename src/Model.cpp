@@ -1,8 +1,4 @@
 #include "Model.h"
-#include "Shaders.h"
-#include <GLFW/glfw3.h>
-#include <GL/glew.h>
-#include "Model.h"
 
 //-----------------------------------------------------------------------------------------------------
 // Lee los atributos del modelo de un fichero de texto y los almacena en los vectores correspondientes

@@ -2,14 +2,12 @@
 #define MODEL_H
 
 #include <iostream>
-// vectores y matrices
-#include <vector> // vector estándar de c++
+#include <vector>
 #include <GL/glew.h>
-#include <glm/glm.hpp> // manejar vectores y matrices
+#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <assimp/Importer.hpp>
-// end vectores
-#include <assimp/scene.h> // para cargar modelos
+#include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
 #define I glm::mat4(1.0)
@@ -24,18 +22,17 @@ class Model {
         virtual ~Model();
                
     private:
-        // vertices
-        std::vector<glm::vec3>      positions; // donde meto el primer elemento
+        
+        std::vector<glm::vec3>      positions;
         std::vector<glm::vec3>      normals;
         std::vector<glm::vec2>      textureCoords;
         std::vector<unsigned short> indices;
-
-        //  vbo para las posiciones normales y texturas  = identificador único 
+    
         unsigned int vao;
         unsigned int vboPositions;
         unsigned int vboNormals;
         unsigned int vboTextureCoords;
-        unsigned int eboIndices; // para los indices = element bufer object
+        unsigned int eboIndices;
 
 };
 
